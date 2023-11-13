@@ -3392,15 +3392,46 @@ z-index: 1000;
 <div>
 <div>
 <pre class="mermaid mermaid-js">erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-    CUSTOMER{
-        int id
+    SKILLS ||--o{ PEOPLESKILLS : included-in
+    PEOPLE ||--o{ PEOPLESKILLS : has
+    PEOPLE ||--o{ PEOPLE-ROLES : has
+    ROLES ||--o{ PEOPLE-ROLES : included-in
+
+    PEOPLE {
+        int id PK
         string first_name
         string last_name
+        string email
+        string linkedin_url
+        string headshot_url
+        string discord_handle
+        string brief_bio
+        date date_joined
     }
-    DELIVERY-ADDRESS {
-        int id
+    SKILLS {
+        int id PK
+        string name
+        string description
+        string tag
+        string url
+        string time_commitment
+    }
+    ROLES {
+        int id PK
+        string name
+        string sort_priority
+    }
+    PEOPLE-ROLES {
+        int id PK
+        int people_id FK
+        int role_id FK
+        date date_assigned
+    }
+    PEOPLESKILLS {
+        int id PK
+        int skills_id FK
+        int people_id FK
+        date date_acquired
     }
 </pre>
 </div>

@@ -196,6 +196,9 @@ create table peopleroles(
      people_id int not null,
      role_id int not null,
      date_assigned int not null, 
+    foreign key(role_id) references roles (id),
+    foreign key(people_id) references people (people_id),
+     
      primary key(id)
 );     
 
